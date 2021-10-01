@@ -1,2 +1,2 @@
 # Vitual-Wallet
-MAC | Within Moder
+MAC | Within Modern
