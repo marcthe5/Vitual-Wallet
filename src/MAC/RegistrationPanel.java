@@ -25,6 +25,7 @@ public class RegistrationPanel extends Vars {
 	private JTextField ln;
 	private JTextField fn;
 	private JTextField contact;
+	
 
 	/**
 	 * Launch the application.
@@ -133,6 +134,9 @@ public class RegistrationPanel extends Vars {
 		btnReset.setCursor(Cursor.getPredefinedCursor(Cursor.HAND_CURSOR));
 		btnReset.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
+				ln.setText(null);
+				fn.setText(null);
+				contact.setText(null);
 			}
 		});
 		btnReset.setFont(new Font("Segoe UI", Font.BOLD, 14));
@@ -178,43 +182,67 @@ public class RegistrationPanel extends Vars {
 	   	 String insertQuery4 = "INSERT INTO accountdepot(accountId) VALUES(?)";
 		 String insertQuery5 = "INSERT INTO requests(receiverPhone) SELECT Phone FROM accounts";
 	   	 String insertQuery6 = "INSERT INTO requests(requester,requestAmount) VALUES(?,?) ";
+	   	 String insertQuery7 = "INSERT INTO transactions(Phone) VALUES(?)";
 		
-         ps=connection.prepareStatement(insertQuery);
-         ps.setShort(1, mpin);
-         ps.setString(2, phone);
-         ps.setString(3, lname);
-         ps.setString(4, fname);
-         ps.executeUpdate();
+         ps1=connection.prepareStatement(insertQuery);
+         ps1.setShort(1, mpin);
+         ps1.setString(2, phone);
+         ps1.setString(3, lname);
+         ps1.setString(4, fname);
          
-         ps=connection.prepareStatement(insertQuery2);
-         ps.executeUpdate();
+         ps2=connection.prepareStatement(insertQuery2);
  
          
-         ps=connection.prepareStatement(updateQuery3);
-         ps.setInt(1,SQLdep());
-         ps.setString(2,phone);
-         ps.executeUpdate();
+         ps3=connection.prepareStatement(updateQuery3);
+         ps3.setInt(1,SQLdep());
+         ps3.setString(2,phone);
          
-         ps=connection.prepareStatement(insertQuery4);
-         ps.setInt(1, id);
-         ps.executeUpdate();
+         ps4=connection.prepareStatement(insertQuery4);
+         ps4.setInt(1, id);
          
-         ps=connection.prepareStatement(insertQuery5);
-         ps.executeUpdate();
+         ps5=connection.prepareStatement(insertQuery5);
          
-         ps=connection.prepareStatement(insertQuery6);
-         ps.setInt(1, reqAm);
-         ps.setInt(2, reqAm);
-         ps.executeUpdate();
+         ps6=connection.prepareStatement(insertQuery6);
+         ps6.setInt(1, reqAm);
+         ps6.setInt(2, reqAm);
          
-      
+         
+         ps7=connection.prepareStatement(insertQuery7);
+         ps7.setString(1, phone);
+         
+        
+         if(fn.getText().isEmpty() && ln.getText().isEmpty() && contact.getText().isEmpty()) {
+       	  SQLreturn = false;
+        	 ps1.cancel();
+        	 ps2.cancel();
+        	 ps3.cancel();
+        	 ps4.cancel();
+        	 ps5.cancel();
+        	 ps6.cancel();
+        	 ps7.cancel();
+        	 JOptionPane.showMessageDialog(null, "Validation Error!","ERROR",JOptionPane.ERROR_MESSAGE);
+       	     
+        	
+         }
+         else {
+       	  SQLreturn = true;
+        	 ps1.executeUpdate();
+        	 ps2.executeUpdate();
+        	 ps3.executeUpdate();
+        	 ps4.executeUpdate();
+        	 ps5.executeUpdate();
+        	 ps6.executeUpdate();
+        	 ps7.executeUpdate();
+        	  
+        	
+         }
          
         
          
          ps.close();
          connection.close();
          
-         SQLreturn = true;
+       
          
          JOptionPane.showMessageDialog(null,"Welcome " + fname.toUpperCase() + "!");
          
