@@ -33,7 +33,8 @@ public class Deposit extends JFrame {
 	private JTextField textField;
 
 	 protected Connection connection;
-	 protected PreparedStatement ps ;
+	 protected PreparedStatement ps;
+	 protected PreparedStatement ps1;
 	 protected ResultSet rs;
 
 	/**
@@ -139,23 +140,34 @@ public class Deposit extends JFrame {
 		 final String url = "jdbc:mysql://localhost:3306/ATM";
 		 final String username = "marcthe5";
 		 final String password = "Myloveones1";
+		 String toTransact = "ACCOUNT USER deposit an amount of " + dep;
 		
 		
 	   	 try {
 
 			connection = DriverManager.getConnection(url, username,password);
 		   	 String updateQuery = "UPDATE accountdepot SET cash = cash + ? WHERE Phone = ? ";
+		   	 String updateQuery1 = "UPDATE transactions SET transacts = ? WHERE Phone = ?";
+		   	 
 		   	 
 		   	ps=connection.prepareStatement(updateQuery);         
 		   	ps.setInt(1, dep);
 		   	ps.setString(2, user);
-	      
-	        ps.executeUpdate();
+		   	
+		   	ps1=connection.prepareStatement(updateQuery1);         
+		   	ps1.setString(1, toTransact);
+		   	ps1.setString(2, user);
+	       
+		   	
 	         
 	         if(dep != 0 && dep > 0) {
+	 	        ps.executeUpdate();
+	 	        ps1.executeUpdate();
 		         Vars.SQLreturn = true;
 	         }
 	         else {
+	 	        ps.cancel();
+	 	        ps1.cancel();
 	        	 Vars.SQLreturn = false;
 	         }
 	         ps.close();
