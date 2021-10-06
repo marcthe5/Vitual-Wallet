@@ -9,32 +9,71 @@ import javax.swing.border.EmptyBorder;
 import java.awt.Color;
 import javax.swing.JLabel;
 import java.awt.Font;
+import java.sql.Connection;
+import java.sql.DriverManager;
+import java.sql.PreparedStatement;
+import java.sql.ResultSet;
+import java.sql.Statement;
+
 import javax.swing.JSeparator;
 
 public class Transactions extends JFrame {
 
 	private JPanel contentPane;
+    protected static String phone;
+    protected Connection connection;
+    protected PreparedStatement ps;
+    protected ResultSet rs;
+    protected String getTransact;
+    
+    //Labels - getValue
+    protected JLabel t1;
+    protected JLabel t2;
+    protected JLabel t3;
+    protected JLabel t4;
+    protected JLabel t5;
+    protected JLabel t6;
+    protected JLabel t7;
+    protected JLabel t8;
+    protected JLabel t9;
+    protected JLabel t10;
+    protected JLabel t11;
+    protected JLabel t12;
+    protected JLabel t13;
+    protected JLabel t14;
+    protected JLabel t15;
 
-	/**
-	 * Launch the application.
-	 */
-	public static void main(String[] args) {
-		EventQueue.invokeLater(new Runnable() {
-			public void run() {
-				try {
-					Transactions frame = new Transactions();
-					frame.setVisible(true);
-				} catch (Exception e) {
-					e.printStackTrace();
-				}
-			}
-		});
-	}
 
 	/**
 	 * Create the frame.
 	 */
-	public Transactions() {
+	public Transactions(String phone) {
+    	this.phone = phone;
+		
+		try {
+			
+			 final String url = "jdbc:mysql://localhost:3306/ATM";
+			 final String username = "marcthe5";
+			 final String password = "Myloveones1";
+			 Statement stmt;
+			connection = DriverManager.getConnection(url, username,password);
+			   	String retrieveQuery = "SELECT * FROM transactions WHERE Phone = " + phone;
+
+			   	stmt=connection.createStatement();
+			   	rs = stmt.executeQuery(retrieveQuery);
+
+		        while(rs.next()) {
+		        	getTransact = rs.getString("transacts");
+		        }
+		        stmt.close();
+		        rs.close();
+		        connection.close();
+		   	    }
+		      catch(Exception e) {
+		    	  e.printStackTrace();
+		      }
+		
+		
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setBounds(100, 100, 452, 556);
 		contentPane = new JPanel();
@@ -61,7 +100,7 @@ public class Transactions extends JFrame {
 		seperator_top.setBounds(0, 64, 435, 3);
 		contentPane.add(seperator_top);
 		
-		JLabel t1 = new JLabel("New label");
+		 t1 = new JLabel(getTransact);
 		t1.setFont(new Font("Segoe UI", Font.PLAIN, 13));
 		t1.setBounds(10, 66, 417, 28);
 		contentPane.add(t1);
@@ -71,7 +110,7 @@ public class Transactions extends JFrame {
 		separator.setBounds(0, 91, 435, 3);
 		contentPane.add(separator);
 		
-		JLabel t2 = new JLabel("New label");
+		 t2 = new JLabel("");
 		t2.setFont(new Font("Segoe UI", Font.PLAIN, 13));
 		t2.setBounds(10, 92, 417, 28);
 		contentPane.add(t2);
@@ -81,7 +120,7 @@ public class Transactions extends JFrame {
 		separator_1.setBounds(0, 118, 435, 3);
 		contentPane.add(separator_1);
 		
-		JLabel t3 = new JLabel("New label");
+		 t3 = new JLabel("");
 		t3.setFont(new Font("Segoe UI", Font.PLAIN, 13));
 		t3.setBounds(10, 120, 417, 28);
 		contentPane.add(t3);
@@ -91,7 +130,7 @@ public class Transactions extends JFrame {
 		separator_2.setBounds(0, 146, 435, 3);
 		contentPane.add(separator_2);
 		
-		JLabel t4 = new JLabel("New label");
+		 t4 = new JLabel("");
 		t4.setFont(new Font("Segoe UI", Font.PLAIN, 13));
 		t4.setBounds(10, 147, 417, 28);
 		contentPane.add(t4);
@@ -101,7 +140,7 @@ public class Transactions extends JFrame {
 		separator_3.setBounds(0, 174, 435, 3);
 		contentPane.add(separator_3);
 		
-		JLabel t5 = new JLabel("New label");
+		 t5 = new JLabel("");
 		t5.setFont(new Font("Segoe UI", Font.PLAIN, 13));
 		t5.setBounds(10, 175, 417, 28);
 		contentPane.add(t5);
@@ -111,7 +150,7 @@ public class Transactions extends JFrame {
 		separator_4.setBounds(0, 201, 435, 3);
 		contentPane.add(separator_4);
 		
-		JLabel t6 = new JLabel("New label");
+		 t6 = new JLabel("");
 		t6.setFont(new Font("Segoe UI", Font.PLAIN, 13));
 		t6.setBounds(9, 203, 417, 28);
 		contentPane.add(t6);
@@ -121,7 +160,7 @@ public class Transactions extends JFrame {
 		separator_5.setBounds(-1, 229, 435, 3);
 		contentPane.add(separator_5);
 		
-		JLabel t7 = new JLabel("New label");
+		 t7 = new JLabel("");
 		t7.setFont(new Font("Segoe UI", Font.PLAIN, 13));
 		t7.setBounds(9, 229, 417, 28);
 		contentPane.add(t7);
@@ -131,7 +170,7 @@ public class Transactions extends JFrame {
 		separator_6.setBounds(0, 257, 435, 3);
 		contentPane.add(separator_6);
 		
-		JLabel t8 = new JLabel("New label");
+		 t8 = new JLabel("");
 		t8.setFont(new Font("Segoe UI", Font.PLAIN, 13));
 		t8.setBounds(9, 257, 417, 28);
 		contentPane.add(t8);
@@ -141,7 +180,7 @@ public class Transactions extends JFrame {
 		separator_7.setBounds(0, 286, 435, 3);
 		contentPane.add(separator_7);
 		
-		JLabel t9 = new JLabel("New label");
+		 t9 = new JLabel("");
 		t9.setFont(new Font("Segoe UI", Font.PLAIN, 13));
 		t9.setBounds(9, 284, 417, 28);
 		contentPane.add(t9);
@@ -151,7 +190,7 @@ public class Transactions extends JFrame {
 		separator_8.setBounds(0, 313, 435, 3);
 		contentPane.add(separator_8);
 		
-		JLabel t10 = new JLabel("New label");
+		 t10 = new JLabel("");
 		t10.setFont(new Font("Segoe UI", Font.PLAIN, 13));
 		t10.setBounds(9, 312, 417, 28);
 		contentPane.add(t10);
@@ -161,7 +200,7 @@ public class Transactions extends JFrame {
 		separator_9.setBounds(0, 339, 435, 3);
 		contentPane.add(separator_9);
 		
-		JLabel t11 = new JLabel("New label");
+		 t11 = new JLabel("");
 		t11.setFont(new Font("Segoe UI", Font.PLAIN, 13));
 		t11.setBounds(8, 339, 417, 28);
 		contentPane.add(t11);
@@ -171,7 +210,7 @@ public class Transactions extends JFrame {
 		separator_10.setBounds(0, 366, 435, 3);
 		contentPane.add(separator_10);
 		
-		JLabel t12 = new JLabel("New label");
+		 t12 = new JLabel("");
 		t12.setFont(new Font("Segoe UI", Font.PLAIN, 13));
 		t12.setBounds(8, 365, 417, 28);
 		contentPane.add(t12);
@@ -181,7 +220,7 @@ public class Transactions extends JFrame {
 		separator_11.setBounds(0, 393, 435, 3);
 		contentPane.add(separator_11);
 		
-		JLabel t13 = new JLabel("New label");
+		 t13 = new JLabel("");
 		t13.setFont(new Font("Segoe UI", Font.PLAIN, 13));
 		t13.setBounds(8, 393, 417, 28);
 		contentPane.add(t13);
@@ -191,7 +230,7 @@ public class Transactions extends JFrame {
 		separator_12.setBounds(0, 422, 435, 3);
 		contentPane.add(separator_12);
 		
-		JLabel t14 = new JLabel("New label");
+		 t14 = new JLabel("");
 		t14.setFont(new Font("Segoe UI", Font.PLAIN, 13));
 		t14.setBounds(8, 420, 417, 28);
 		contentPane.add(t14);
@@ -201,7 +240,7 @@ public class Transactions extends JFrame {
 		separator_13.setBounds(0, 450, 435, 3);
 		contentPane.add(separator_13);
 		
-		JLabel t15 = new JLabel("New label");
+		 t15 = new JLabel("");
 		t15.setFont(new Font("Segoe UI", Font.PLAIN, 13));
 		t15.setBounds(8, 449, 417, 28);
 		contentPane.add(t15);
@@ -210,5 +249,21 @@ public class Transactions extends JFrame {
 		separator_14.setForeground(Color.DARK_GRAY);
 		separator_14.setBounds(0, 479, 435, 3);
 		contentPane.add(separator_14);
+	}
+
+	/**
+	 * Launch the application.
+	 */
+	public static void main(String[] args) {
+		EventQueue.invokeLater(new Runnable() {
+			public void run() {
+				try {
+					Transactions frame = new Transactions(phone);
+					frame.setVisible(true);
+				} catch (Exception e) {
+					e.printStackTrace();
+				}
+			}
+		});
 	}
 }
