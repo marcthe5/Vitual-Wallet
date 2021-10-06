@@ -100,6 +100,12 @@ public class MainPanel extends JFrame{
 		btnTransaction.setForeground(Color.WHITE);
 		btnTransaction.setFont(new Font("Segoe UI", Font.PLAIN, 16));
 		btnTransaction.setBackground(Color.DARK_GRAY);
+		btnTransaction.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				Transactions ts = new Transactions(userPhone);
+				ts.setVisible(true);
+			}
+		});
 		btnTransaction.setBounds(10, 234, 176, 68);
 		 getContentPane().add(btnTransaction);
 		
