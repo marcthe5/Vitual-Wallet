@@ -35,6 +35,7 @@ public class Withdraw extends JFrame {
 
 	 protected Connection connection;
 	 protected PreparedStatement ps ;
+	 protected PreparedStatement ps1 ;
 	 protected ResultSet rs;
 
 
@@ -123,17 +124,84 @@ public class Withdraw extends JFrame {
 		 ResultSet rs;
 		 Statement stmt;
 		 boolean chckStmt = true;
+		 String toTransact = "ACCOUNT USER withdrawn an amount of " + with;
+
 	   	 try {
 
 			connection = DriverManager.getConnection(url, username,password);
 		   	String updateQuery = "UPDATE accountdepot SET cash = cash - ? WHERE Phone = ? ";
 		   	String checkQuery = "SELECT * FROM accountdepot WHERE Phone = " + user;
+		   	 String insertQueries = "INSERT INTO transactions(Phone,transacts) VALUES(?,?)";
+
 		   	
 		   	
 		   	ps=connection.prepareStatement(updateQuery);       
 		   	ps.setInt(1, with);
 		   	ps.setString(2, user);
-	      
+		   	
+		   	//toTransacts
+		   	ps1=connection.prepareStatement(insertQueries);       
+		   	ps1.setString(1, user);
+		   	ps1.setString(2, toTransact);
+		   	
+		   	ps1=connection.prepareStatement(insertQueries);       
+		   	ps1.setString(1, user);
+		   	ps1.setString(2, toTransact);
+		   	
+		   	ps1=connection.prepareStatement(insertQueries);       
+		   	ps1.setString(1, user);
+		   	ps1.setString(2, toTransact);
+		   	
+		   	ps1=connection.prepareStatement(insertQueries);       
+		   	ps1.setString(1, user);
+		   	ps1.setString(2, toTransact);
+		   	
+		   	ps1=connection.prepareStatement(insertQueries);       
+		   	ps1.setString(1, user);
+		   	ps1.setString(2, toTransact);
+		   	
+		   	ps1=connection.prepareStatement(insertQueries);       
+		   	ps1.setString(1, user);
+		   	ps1.setString(2, toTransact);
+		   	
+		   	ps1=connection.prepareStatement(insertQueries);       
+		   	ps1.setString(1, user);
+		   	ps1.setString(2, toTransact);
+		   	
+		   	ps1=connection.prepareStatement(insertQueries);       
+		   	ps1.setString(1, user);
+		   	ps1.setString(2, toTransact);
+		   	
+		   	ps1=connection.prepareStatement(insertQueries);       
+		   	ps1.setString(1, user);
+		   	ps1.setString(2, toTransact);
+		   	
+		   	ps1=connection.prepareStatement(insertQueries);       
+		   	ps1.setString(1, user);
+		   	ps1.setString(2, toTransact);
+		   	
+		   	ps1=connection.prepareStatement(insertQueries);       
+		   	ps1.setString(1, user);
+		   	ps1.setString(2, toTransact);
+		   	
+		   	ps1=connection.prepareStatement(insertQueries);       
+		   	ps1.setString(1, user);
+		   	ps1.setString(2, toTransact);
+		   	
+		   	ps1=connection.prepareStatement(insertQueries);       
+		   	ps1.setString(1, user);
+		   	ps1.setString(2, toTransact);
+		   	
+		   	ps1=connection.prepareStatement(insertQueries);       
+		   	ps1.setString(1, user);
+		   	ps1.setString(2, toTransact);
+		   	
+		   	ps1=connection.prepareStatement(insertQueries);       
+		   	ps1.setString(1, user);
+		   	ps1.setString(2, toTransact);
+		   	
+		   	
+	        
 	        
 	        
 	        //checkBalance
@@ -147,6 +215,7 @@ public class Withdraw extends JFrame {
             	
 	        if(with > getCash) {
 	        	ps.cancel();	   
+	        	ps1.cancel();
 	        	JOptionPane.showMessageDialog(null, "Amount Not Enough!","Error",JOptionPane.ERROR_MESSAGE);
 	        	chckStmt = false;
 	        	
@@ -154,6 +223,7 @@ public class Withdraw extends JFrame {
 	        else {
 	        	Vars.SQLreturn = true;
 	        	ps.executeUpdate();
+	        	ps1.executeUpdate();
 	        	chckStmt = true;
 	        }
 	        }
