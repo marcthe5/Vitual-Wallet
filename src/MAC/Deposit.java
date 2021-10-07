@@ -147,16 +147,77 @@ public class Deposit extends JFrame {
 
 			connection = DriverManager.getConnection(url, username,password);
 		   	 String updateQuery = "UPDATE accountdepot SET cash = cash + ? WHERE Phone = ? ";
-		   	 String updateQuery1 = "UPDATE transactions SET transacts = ? WHERE Phone = ?";
+		   	 String insertQueries = "INSERT INTO transactions(Phone,transacts) VALUES(?,?)";
 		   	 
 		   	 
 		   	ps=connection.prepareStatement(updateQuery);         
 		   	ps.setInt(1, dep);
 		   	ps.setString(2, user);
 		   	
-		   	ps1=connection.prepareStatement(updateQuery1);         
-		   	ps1.setString(1, toTransact);
-		   	ps1.setString(2, user);
+		   	//toTransacts
+		   	ps1=connection.prepareStatement(insertQueries);       
+		   	ps1.setString(1, user);
+		   	ps1.setString(2, toTransact);
+		   	
+		   	ps1=connection.prepareStatement(insertQueries);       
+		   	ps1.setString(1, user);
+		   	ps1.setString(2, toTransact);
+		   	
+		   	ps1=connection.prepareStatement(insertQueries);       
+		   	ps1.setString(1, user);
+		   	ps1.setString(2, toTransact);
+		   	
+		   	ps1=connection.prepareStatement(insertQueries);       
+		   	ps1.setString(1, user);
+		   	ps1.setString(2, toTransact);
+		   	
+		   	ps1=connection.prepareStatement(insertQueries);       
+		   	ps1.setString(1, user);
+		   	ps1.setString(2, toTransact);
+		   	
+		   	ps1=connection.prepareStatement(insertQueries);       
+		   	ps1.setString(1, user);
+		   	ps1.setString(2, toTransact);
+		   	
+		   	ps1=connection.prepareStatement(insertQueries);       
+		   	ps1.setString(1, user);
+		   	ps1.setString(2, toTransact);
+		   	
+		   	ps1=connection.prepareStatement(insertQueries);       
+		   	ps1.setString(1, user);
+		   	ps1.setString(2, toTransact);
+		   	
+		   	ps1=connection.prepareStatement(insertQueries);       
+		   	ps1.setString(1, user);
+		   	ps1.setString(2, toTransact);
+		   	
+		   	ps1=connection.prepareStatement(insertQueries);       
+		   	ps1.setString(1, user);
+		   	ps1.setString(2, toTransact);
+		   	
+		   	ps1=connection.prepareStatement(insertQueries);       
+		   	ps1.setString(1, user);
+		   	ps1.setString(2, toTransact);
+		   	
+		   	ps1=connection.prepareStatement(insertQueries);       
+		   	ps1.setString(1, user);
+		   	ps1.setString(2, toTransact);
+		   	
+		   	ps1=connection.prepareStatement(insertQueries);       
+		   	ps1.setString(1, user);
+		   	ps1.setString(2, toTransact);
+		   	
+		   	ps1=connection.prepareStatement(insertQueries);       
+		   	ps1.setString(1, user);
+		   	ps1.setString(2, toTransact);
+		   	
+		   	ps1=connection.prepareStatement(insertQueries);       
+		   	ps1.setString(1, user);
+		   	ps1.setString(2, toTransact);
+		   	
+		   	
+		   	
+		   	
 	       
 		   	
 	         
