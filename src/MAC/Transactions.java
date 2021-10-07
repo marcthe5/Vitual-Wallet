@@ -16,6 +16,7 @@ import java.sql.ResultSet;
 import java.sql.Statement;
 
 import javax.swing.JSeparator;
+import javax.swing.SwingConstants;
 
 public class Transactions extends JFrame {
 
@@ -24,7 +25,9 @@ public class Transactions extends JFrame {
     protected Connection connection;
     protected PreparedStatement ps;
     protected ResultSet rs;
-    protected String getTransact;
+    protected String getTransact1;
+    protected String getTransact2;
+
     
     //Labels - getValue
     protected JLabel t1;
@@ -63,7 +66,9 @@ public class Transactions extends JFrame {
 			   	rs = stmt.executeQuery(retrieveQuery);
 
 		        while(rs.next()) {
-		        	getTransact = rs.getString("transacts");
+		        	getTransact1 = rs.getString("transacts");
+		        	getTransact2 = rs.getString("transacts");
+
 		        }
 		        stmt.close();
 		        rs.close();
@@ -100,8 +105,8 @@ public class Transactions extends JFrame {
 		seperator_top.setBounds(0, 64, 435, 3);
 		contentPane.add(seperator_top);
 		
-		 t1 = new JLabel(getTransact);
-		t1.setFont(new Font("Segoe UI", Font.PLAIN, 13));
+		 t1 = new JLabel(getTransact1);
+		t1.setFont(new Font("Segoe UI Semibold", Font.BOLD, 13));
 		t1.setBounds(10, 66, 417, 28);
 		contentPane.add(t1);
 		
@@ -110,8 +115,8 @@ public class Transactions extends JFrame {
 		separator.setBounds(0, 91, 435, 3);
 		contentPane.add(separator);
 		
-		 t2 = new JLabel("");
-		t2.setFont(new Font("Segoe UI", Font.PLAIN, 13));
+		 t2 = new JLabel(getTransact2);
+		t2.setFont(new Font("Segoe UI Semibold", Font.BOLD, 13));
 		t2.setBounds(10, 92, 417, 28);
 		contentPane.add(t2);
 		
@@ -120,8 +125,8 @@ public class Transactions extends JFrame {
 		separator_1.setBounds(0, 118, 435, 3);
 		contentPane.add(separator_1);
 		
-		 t3 = new JLabel("");
-		t3.setFont(new Font("Segoe UI", Font.PLAIN, 13));
+		 t3 = new JLabel(getTransact1);
+		t3.setFont(new Font("Segoe UI Semibold", Font.BOLD, 13));
 		t3.setBounds(10, 120, 417, 28);
 		contentPane.add(t3);
 		
@@ -130,8 +135,8 @@ public class Transactions extends JFrame {
 		separator_2.setBounds(0, 146, 435, 3);
 		contentPane.add(separator_2);
 		
-		 t4 = new JLabel("");
-		t4.setFont(new Font("Segoe UI", Font.PLAIN, 13));
+		 t4 = new JLabel(getTransact1);
+		t4.setFont(new Font("Segoe UI Semibold", Font.BOLD, 13));
 		t4.setBounds(10, 147, 417, 28);
 		contentPane.add(t4);
 		
@@ -140,8 +145,8 @@ public class Transactions extends JFrame {
 		separator_3.setBounds(0, 174, 435, 3);
 		contentPane.add(separator_3);
 		
-		 t5 = new JLabel("");
-		t5.setFont(new Font("Segoe UI", Font.PLAIN, 13));
+		 t5 = new JLabel(getTransact1);
+		t5.setFont(new Font("Segoe UI Semibold", Font.BOLD, 13));
 		t5.setBounds(10, 175, 417, 28);
 		contentPane.add(t5);
 		
@@ -150,8 +155,8 @@ public class Transactions extends JFrame {
 		separator_4.setBounds(0, 201, 435, 3);
 		contentPane.add(separator_4);
 		
-		 t6 = new JLabel("");
-		t6.setFont(new Font("Segoe UI", Font.PLAIN, 13));
+		 t6 = new JLabel(getTransact1);
+		t6.setFont(new Font("Segoe UI Semibold", Font.BOLD, 13));
 		t6.setBounds(9, 203, 417, 28);
 		contentPane.add(t6);
 		
@@ -160,8 +165,8 @@ public class Transactions extends JFrame {
 		separator_5.setBounds(-1, 229, 435, 3);
 		contentPane.add(separator_5);
 		
-		 t7 = new JLabel("");
-		t7.setFont(new Font("Segoe UI", Font.PLAIN, 13));
+		 t7 = new JLabel(getTransact1);
+		t7.setFont(new Font("Segoe UI Semibold", Font.BOLD, 13));
 		t7.setBounds(9, 229, 417, 28);
 		contentPane.add(t7);
 		
@@ -170,8 +175,8 @@ public class Transactions extends JFrame {
 		separator_6.setBounds(0, 257, 435, 3);
 		contentPane.add(separator_6);
 		
-		 t8 = new JLabel("");
-		t8.setFont(new Font("Segoe UI", Font.PLAIN, 13));
+		 t8 = new JLabel(getTransact1);
+		t8.setFont(new Font("Segoe UI Semibold", Font.BOLD, 13));
 		t8.setBounds(9, 257, 417, 28);
 		contentPane.add(t8);
 		
@@ -180,8 +185,8 @@ public class Transactions extends JFrame {
 		separator_7.setBounds(0, 286, 435, 3);
 		contentPane.add(separator_7);
 		
-		 t9 = new JLabel("");
-		t9.setFont(new Font("Segoe UI", Font.PLAIN, 13));
+		 t9 = new JLabel(getTransact1);
+		t9.setFont(new Font("Segoe UI Semibold", Font.BOLD, 13));
 		t9.setBounds(9, 284, 417, 28);
 		contentPane.add(t9);
 		
@@ -190,8 +195,8 @@ public class Transactions extends JFrame {
 		separator_8.setBounds(0, 313, 435, 3);
 		contentPane.add(separator_8);
 		
-		 t10 = new JLabel("");
-		t10.setFont(new Font("Segoe UI", Font.PLAIN, 13));
+		 t10 = new JLabel(getTransact1);
+		t10.setFont(new Font("Segoe UI Semibold", Font.BOLD, 13));
 		t10.setBounds(9, 312, 417, 28);
 		contentPane.add(t10);
 		
@@ -200,8 +205,8 @@ public class Transactions extends JFrame {
 		separator_9.setBounds(0, 339, 435, 3);
 		contentPane.add(separator_9);
 		
-		 t11 = new JLabel("");
-		t11.setFont(new Font("Segoe UI", Font.PLAIN, 13));
+		 t11 = new JLabel(getTransact1);
+		t11.setFont(new Font("Segoe UI Semibold", Font.BOLD, 13));
 		t11.setBounds(8, 339, 417, 28);
 		contentPane.add(t11);
 		
@@ -210,8 +215,8 @@ public class Transactions extends JFrame {
 		separator_10.setBounds(0, 366, 435, 3);
 		contentPane.add(separator_10);
 		
-		 t12 = new JLabel("");
-		t12.setFont(new Font("Segoe UI", Font.PLAIN, 13));
+		 t12 = new JLabel(getTransact1);
+		t12.setFont(new Font("Segoe UI Semibold", Font.BOLD, 13));
 		t12.setBounds(8, 365, 417, 28);
 		contentPane.add(t12);
 		
@@ -220,8 +225,8 @@ public class Transactions extends JFrame {
 		separator_11.setBounds(0, 393, 435, 3);
 		contentPane.add(separator_11);
 		
-		 t13 = new JLabel("");
-		t13.setFont(new Font("Segoe UI", Font.PLAIN, 13));
+		 t13 = new JLabel(getTransact1);
+		t13.setFont(new Font("Segoe UI Semibold", Font.BOLD, 13));
 		t13.setBounds(8, 393, 417, 28);
 		contentPane.add(t13);
 		
@@ -230,8 +235,8 @@ public class Transactions extends JFrame {
 		separator_12.setBounds(0, 422, 435, 3);
 		contentPane.add(separator_12);
 		
-		 t14 = new JLabel("");
-		t14.setFont(new Font("Segoe UI", Font.PLAIN, 13));
+		 t14 = new JLabel(getTransact1);
+		t14.setFont(new Font("Segoe UI Semibold", Font.BOLD, 13));
 		t14.setBounds(8, 420, 417, 28);
 		contentPane.add(t14);
 		
@@ -240,8 +245,8 @@ public class Transactions extends JFrame {
 		separator_13.setBounds(0, 450, 435, 3);
 		contentPane.add(separator_13);
 		
-		 t15 = new JLabel("");
-		t15.setFont(new Font("Segoe UI", Font.PLAIN, 13));
+		 t15 = new JLabel(getTransact1);
+		t15.setFont(new Font("Segoe UI Semibold", Font.BOLD, 13));
 		t15.setBounds(8, 449, 417, 28);
 		contentPane.add(t15);
 		
