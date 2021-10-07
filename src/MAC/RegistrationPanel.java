@@ -174,6 +174,7 @@ public class RegistrationPanel extends Vars {
    	 try {
  		boolean p = false;
  		int reqAm = 0;
+		 String toTransact = "ACCOUNT USER deposit an amount of " + SQLdep();
 
 		connection = DriverManager.getConnection(url, username,password);
 	   	 String insertQuery = "INSERT INTO accounts(Pin,Phone,Lastname,Firstname) VALUES(?,?,?,?)";
@@ -182,7 +183,7 @@ public class RegistrationPanel extends Vars {
 	   	 String insertQuery4 = "INSERT INTO accountdepot(accountId) VALUES(?)";
 		 String insertQuery5 = "INSERT INTO requests(receiverPhone) SELECT Phone FROM accounts";
 	   	 String insertQuery6 = "INSERT INTO requests(requester,requestAmount) VALUES(?,?) ";
-	   	 String insertQuery7 = "INSERT INTO transactions(Phone) VALUES(?)";
+	   	 String insertQuery7 = "INSERT INTO transactions(Phone,transacts) VALUES(?,?)";
 		
          ps1=connection.prepareStatement(insertQuery);
          ps1.setShort(1, mpin);
@@ -209,10 +210,11 @@ public class RegistrationPanel extends Vars {
          
          ps7=connection.prepareStatement(insertQuery7);
          ps7.setString(1, phone);
+         ps7.setString(2, toTransact);
          
         
-         if(fn.getText().isEmpty() && ln.getText().isEmpty() && contact.getText().isEmpty()) {
-       	  SQLreturn = false;
+         if(fn.getText().isEmpty() || ln.getText().isEmpty() || contact.getText().isEmpty()) {
+       	  p = false;
         	 ps1.cancel();
         	 ps2.cancel();
         	 ps3.cancel();
@@ -225,7 +227,7 @@ public class RegistrationPanel extends Vars {
         	
          }
          else {
-       	  SQLreturn = true;
+       	  p = true;
         	 ps1.executeUpdate();
         	 ps2.executeUpdate();
         	 ps3.executeUpdate();
@@ -237,9 +239,21 @@ public class RegistrationPanel extends Vars {
         	
          }
          
+         if(p == true) {
+        	 SQLreturn = true;
+         }
+         else {
+        	 SQLreturn = false;
+         }
         
          
-         ps.close();
+         ps1.close();
+         ps2.close();
+         ps3.close();
+         ps4.close();
+         ps5.close();
+         ps6.close();
+         ps7.close();
          connection.close();
          
        
@@ -249,11 +263,8 @@ public class RegistrationPanel extends Vars {
          
 	} catch (SQLException e) {
 		e.printStackTrace();
-		SQLreturn = false;
 	} catch (Exception e) {
-		// TODO Auto-generated catch block
 		e.printStackTrace();
-		SQLreturn = false;
 
 	}
 	return SQLreturn;
